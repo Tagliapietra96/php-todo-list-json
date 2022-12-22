@@ -17,6 +17,7 @@ createApp({
                 description: '',
                 isDone: 'false',
             },
+            deleteIndex: {index: ""}
         }
     },
     // ************ FUNZIONI ************
@@ -42,7 +43,8 @@ createApp({
             });
         },
         deleteTask(index){
-            axios.post('./api/deleteTask.php', index, {
+            this.deleteIndex.index = index;
+            axios.post('./api/deleteTask.php', this.deleteIndex, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             }).then(resp =>{
                 this.fetchData();
