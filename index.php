@@ -1,3 +1,7 @@
+<?php
+
+?>
+
 <!DOCTYPE html>
 <html lang="it">
 
@@ -15,30 +19,48 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
-    <link rel="stylesheet" href="css/style.css">
+    <!-- <link rel="stylesheet" href="css/style.css"> -->
 </head>
 
-<body>
+<body class="bg-dark">
     <div id="my-app">
 
-        <header>
-    
+        <header class="text-center text-white my-5">
+            <h1>To do list</h1>
         </header>
     
         <!-- /* ************************************************************************ */ -->
     
         <main>
-    
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-5">
+                        <div class="card p-5">
+                            <form class="input-group" @submit.prevent="addTask">
+                                <input type="text" class="form-control" placeholder="Inserisci una nuova task" v-model="newTask.description">
+                                <button class="btn btn-primary">Crea</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container mt-5">
+                <div class="row justify-content-center">
+                    <div class="col-8">
+                        <div class="card">
+                            <div class="card p-3" v-for="(element, i) in tasksList">
+                                <h3 :class="(element.isDone === 'true') ? 'text-decoration-line-through' : ''" @click="onTaskClick(element)" >{{element.description}}</h3>
+                                <button class="btn btn-danger ms-auto" @click="deleteTask(i)">Elimina</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
-    
-        <!-- /* ************************************************************************ */ -->
-    
-        <footer>
-    
-        </footer>
 
     </div>
-    <script src="js/main.js"></script>
+    <script type="module" src="js/main.js"></script>
 </body>
 
 </html>
