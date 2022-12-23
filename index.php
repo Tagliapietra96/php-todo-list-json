@@ -50,7 +50,7 @@
                     <div class="col-8">
                         <div class="card">
                             <div class="card p-3" v-for="(element, i) in tasksList">
-                                <h3 :class="(element.isDone === 'true') ? 'text-decoration-line-through' : ''" @click="onTaskClick(element)" >{{element.description}}</h3>
+                                <h3 :class="(element.isDone === 'true') ? 'text-decoration-line-through' : ''" @click="onTaskClick(i)" >{{element.description}}</h3>
                                 <button class="btn btn-danger ms-auto" @click="deleteTask(i)">Elimina</button>
                             </div>
                         </div>

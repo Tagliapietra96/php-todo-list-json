@@ -30,12 +30,13 @@ createApp({
                 this.newTask.description = '';
             });
         },
-        onTaskClick(element){
-            if(element.isDone === 'true'){
-                element.isDone = 'false';
-            }else{
-                element.isDone = 'true';
-            }
+        onTaskClick(index){
+            this.deleteIndex.index = index;
+            axios.post('./api/changeStatus.php', this.deleteIndex, {
+                headers: { 'Content-Type': 'multipart/form-data' }
+            }).then(resp =>{
+                this.fetchData();
+            });
         },
         fetchData(){
             axios.get('./api/list.php').then(resp => {
